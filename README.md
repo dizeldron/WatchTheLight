@@ -1,4 +1,4 @@
 # andrewdiesel
 
-Calaculate.java is a console fraction calculator;
-Over, marked as fraction should be a interface fraction calculator, but not ready yet. 
+Calaculate.java is a console fraction calculator. CalculateTest.java is the test for it.
+

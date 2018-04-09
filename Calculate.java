@@ -4,26 +4,34 @@ public class Calculate {
 
     static Scanner sc = new Scanner(System.in);
 
+    private static int firstNumerator;
+    private static int firstDenominator;
+    private static int secondNumerator;
+    private static int secondDenominator;
+
+
+
     public static void main(String[] args) {
 
         System.out.println("Enter the numerator of the first fraction: ");
 
-        int firstNum = getInt();
-        System.out.println(firstNum + " :Is the numerator of the first fraction.");
+        firstNumerator = getInt();
+        System.out.println(firstNumerator + " :Is the numerator of the first fraction.");
         System.out.println("   Enter the denominator of the first fraction: ");
 
-        int secondNum = getInt();
-        System.out.println(secondNum + " : Is the denominator of the first fraction.");
-        System.out.println("   Now the first fraction looks like this: " + firstNum + "/" + secondNum + ".");
+        firstDenominator = getInt();
+        System.out.println(firstDenominator+ " : Is the denominator of the first fraction.");
+        System.out.println("   Now the first fraction looks like this: " + firstNumerator + "/" + firstDenominator+ ".");
         System.out.println("   Enter the numerator of the second fraction: ");
 
-        int thirdNum = getInt();
-        System.out.println(thirdNum + " : Is the numerator of the second fraction.");
+        secondNumerator = getInt();
+        System.out.println(secondNumerator + " : Is the numerator of the second fraction.");
         System.out.println("   Enter the denominator of the second fraction:");
 
-        int fourthNum = getInt();
-        System.out.println(fourthNum + " Is the denominator of the second fraction.");
-        System.out.println("The fractions looks like : " + firstNum + "/" + secondNum + " and " + thirdNum + "/" + fourthNum);
+        secondDenominator = getInt();
+        System.out.println(secondDenominator + " Is the denominator of the second fraction.");
+        System.out.println("The fractions looks like : " + firstNumerator + "/" + firstDenominator + " and " +
+                            secondNumerator + "/" + secondDenominator);
         System.out.println("Choose what you want to do with the fractions:");
         System.out.println("Multiply: enter *");
         System.out.println("Divide: enter /");
@@ -31,15 +39,14 @@ public class Calculate {
         System.out.println("Subtract: enter -");
 
         char operation = getOperation();
-        int resultUp = numerator(firstNum, secondNum, thirdNum, fourthNum, operation);
-        int resultDown = denominator(secondNum, thirdNum, fourthNum, operation);
+        int resultUp = numerator (firstNumerator, firstDenominator, secondNumerator, secondDenominator, operation);
+        int resultDown = denominator(firstDenominator, secondNumerator, secondDenominator, operation);
 
         sc.close();
 
         System.out.println("The answer is :" + resultUp + "/" + resultDown);
 
     }
-
     public static int getInt() {
         int num;
         if (sc.hasNextInt()) {
@@ -65,8 +72,28 @@ public class Calculate {
         return operation;
     }
 
+        public static char setOperationPlus() {
+            char operation = '+';
+            return operation;
+        }
+        public static char setOperationMinus() {
+        char operation = '-';
+        return operation;
+        }
+        public static char setOperationDivine() {
+            char operation = '/';
+            return operation;
+        }
+        public static char setOperationMultiply() {
+        char operation = '*';
+        return operation;
+    }
+
+
+
+
     public static int numerator(int firstNum, int secondNum, int thirdNum, int fourthNum, char operation) {
-        int resultUp;
+        int resultUp = 0;
         switch (operation) {
             case '+':
                 resultUp = firstNum * fourthNum + secondNum * thirdNum;
@@ -82,14 +109,15 @@ public class Calculate {
                 return resultUp;
             default:
                 System.out.println("The operation is not recognized. Repeat the input.");
-                resultUp = numerator(firstNum, secondNum, thirdNum, fourthNum, getOperation());
+                
         }
         return resultUp;
     }
 
     public static int denominator(int secondNum, int thirdNum, int fourthNum, char operation) {
         int resultDown;
-        switch (operation) {
+
+            switch (operation) {
             case '+':
                 resultDown = secondNum * fourthNum;
                 return resultDown;
